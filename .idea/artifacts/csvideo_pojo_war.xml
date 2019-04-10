@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="csvideo-pojo:war">
+    <output-path>$PROJECT_DIR$/csvideo-pojo/target</output-path>
+    <root id="archive" name="csvideo-pojo.war">
+      <element id="artifact" artifact-name="csvideo-pojo:war exploded" />
+    </root>
+  </artifact>
+</component>

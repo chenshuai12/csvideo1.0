@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="csvideo-dao:war">
+    <output-path>$PROJECT_DIR$/csvideo-dao/target</output-path>
+    <root id="archive" name="csvideo-dao.war">
+      <element id="artifact" artifact-name="csvideo-dao:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,10 @@
+com\csvideo\view\controller\CommentsController.class
+com\csvideo\view\controller\VideosReportController.class
+com\csvideo\view\controller\VideosController.class
+com\csvideo\view\controller\MovieCategoryController.class
+com\csvideo\view\controller\UserLikeMovieController.class
+com\csvideo\view\controller\UserController.class
+com\csvideo\view\controller\MoviesController.class
+com\csvideo\view\controller\UserFansController.class
+com\csvideo\view\controller\UserLikeVideosController.class
+com\csvideo\view\controller\UserReportController.class

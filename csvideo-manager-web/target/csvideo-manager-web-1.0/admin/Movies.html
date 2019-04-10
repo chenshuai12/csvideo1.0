@@ -1,0 +1,122 @@
+<!--正常视频-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>品牌管理</title>
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/AdminLTE.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../plugins/angularjs/angular.min.js"></script>
+    <!-- 分页组件开始 -->
+    <script src="../plugins/angularjs/pagination.js"></script>
+    <link rel="stylesheet" href="../plugins/angularjs/pagination.css">
+    <!-- 分页组件结束 -->
+
+    <script type="text/javascript" src="../js/base_pagination.js"></script>
+    <script type="text/javascript" src="../js/controller/baseController.js"></script>
+    <script type="text/javascript" src="../js/controller/MoviesLifeController.js"></script>
+    <script type="text/javascript" src="../js/service/MoviesLifeService.js"></script>
+
+
+</head>
+
+<body class="hold-transition skin-red sidebar-mini" ng-app="csvideo" ng-controller="MoviesLifeController" >
+<!-- .box-body -->
+<div class="box-header with-border">
+    <h3 class="box-title">电影查询</h3>
+</div>
+
+<div class="box-body">
+
+    <!-- 数据表格 -->
+    <div class="table-box">
+        <!--工具栏-->
+        <div class="box-tools pull-right">
+            <div class="has-feedback">
+                用户ID:<input ng-model="userId">
+                <button  class="btn btn-default" ng-click="getByUserId(userId)">查询</button>
+            </div>
+        </div>
+        <!--工具栏-->
+        <div class="box-tools pull-right">
+            <div class="has-feedback">
+                电影ID:<input ng-model="moviesId">
+                <button  class="btn btn-default" ng-click="getByMoviesIds(moviesId)">查询</button>
+            </div>
+        </div>
+        <!--数据列表-->
+        <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
+            <thead>
+            <tr>
+                <th class="" style="padding-right:0px">
+                    <input id="selall" type="checkbox" class="icheckbox_square-blue">
+                </th>
+                <th class="sorting">电影ID</th>
+                <th class="sorting">用户ID</th>
+                <th class="sorting">播放电影</th>
+                <th class="sorting">电影封面</th>
+                <th class="sorting">电影描述</th>
+                <th class="sorting">赞</th>
+                <th class="text-center">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="entity in list">
+                <td><input  type="checkbox"></td>
+                <td>{{entity.moviesId}}</td>
+                <td>{{entity.userId}}</td>
+                <td>{{entity.moviesPath}}</td>
+                <td><a href="{{entity.moviesPath}}">查看电影</a></td>
+                <td><a href="{{entity.moviesPhotoPath}}">查看封面</a></td>
+                <td>{{entity.moviesDescript}}</td>
+                <td>{{entity.moviesPraise}}</td>
+                <td class="text-center">
+                    <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal" ng-click="getByMoviesId(entity.moviesId)" >封禁</button>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <!-- 数据表格 /-->
+</div>
+<!-- /.box-body -->
+<!-- 编辑窗口 -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel">电影封禁</h3>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered table-striped"  width="800px">
+                    <tr>
+                        <td>用户ID</td>
+                        <td><input class="form-control" placeholder="用户ID"  ng-model="entity.userId"></td>
+                    </tr>
+                    <tr>
+                        <td>视频ID</td>
+                        <td><input class="form-control" placeholder="电影ID"  ng-model="entity.moviesId"></td>
+                    </tr>
+                    <tr>
+                        <td>视频状态</td>
+                        <td><input class="form-control" placeholder="视频状态"  ng-model="entity.moviesStatu"></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" data-dismiss="modal" aria-hidden="true" ng-click="update()">保存</button>
+                <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

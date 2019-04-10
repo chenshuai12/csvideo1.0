@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="csvideo-manager-interface:war">
+    <output-path>$PROJECT_DIR$/csvideo-manager-interface/target</output-path>
+    <root id="archive" name="csvideo-manager-interface-1.0.war">
+      <element id="artifact" artifact-name="csvideo-manager-interface:war exploded" />
+    </root>
+  </artifact>
+</component>

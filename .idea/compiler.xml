@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="csvideo-common" />
+        <module name="csvideo-dao" />
+        <module name="csvideo-manager-web" />
+        <module name="csvideo-pojo" />
+        <module name="csvideo-view-interface" />
+        <module name="csvideo-view-service" />
+        <module name="csvideo-view-web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="csvideo-common" target="1.7" />
+      <module name="csvideo-dao" target="1.7" />
+      <module name="csvideo-manager-interface" target="1.7" />
+      <module name="csvideo-manager-service" target="1.7" />
+      <module name="csvideo-manager-web" target="1.7" />
+      <module name="csvideo-parent" target="1.7" />
+      <module name="csvideo-pojo" target="1.7" />
+      <module name="csvideo-view-interface" target="1.7" />
+      <module name="csvideo-view-service" target="1.7" />
+      <module name="csvideo-view-web" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

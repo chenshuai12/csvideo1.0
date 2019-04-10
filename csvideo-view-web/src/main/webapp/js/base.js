@@ -1,0 +1,1 @@
+var app=angular.module('csvideo',[]);//定义视频网站模块儿

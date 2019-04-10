@@ -1,0 +1,10 @@
+com\csvideo\view\service\VideosService.class
+com\csvideo\view\service\MovieCategoryService.class
+com\csvideo\view\service\UserLikeMovieService.class
+com\csvideo\view\service\UserReportService.class
+com\csvideo\view\service\UserFansService.class
+com\csvideo\view\service\VideosReportService.class
+com\csvideo\view\service\MoviesService.class
+com\csvideo\view\service\UserLikeVideosService.class
+com\csvideo\view\service\CommentsService.class
+com\csvideo\view\service\UserService.class

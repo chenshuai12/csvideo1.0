@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.csvideo.dao.VideosMapper" >
+  <resultMap id="BaseResultMap" type="com.csvideo.pojo.Videos" >
+    <result column="videos_id" property="videosId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="videos_path" property="videosPath" jdbcType="VARCHAR" />
+    <result column="videos_photo_path" property="videosPhotoPath" jdbcType="VARCHAR" />
+    <result column="videos_praise" property="videosPraise" jdbcType="INTEGER" />
+    <result column="videos_statu" property="videosStatu" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.csvideo.pojo.Videos" extends="BaseResultMap" >
+    <result column="videos_descript" property="videosDescript" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    videos_id, user_id, videos_path, videos_photo_path, videos_praise, videos_statu
+  </sql>
+  <sql id="Blob_Column_List" >
+    videos_descript
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.csvideo.pojo.VideosExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from videos
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.csvideo.pojo.VideosExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from videos
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.csvideo.pojo.VideosExample" >
+    delete from videos
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.csvideo.pojo.Videos" >
+    insert into videos (videos_id, user_id, videos_path, 
+      videos_photo_path, videos_praise, videos_statu, 
+      videos_descript)
+    values (#{videosId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{videosPath,jdbcType=VARCHAR}, 
+      #{videosPhotoPath,jdbcType=VARCHAR}, #{videosPraise,jdbcType=INTEGER}, #{videosStatu,jdbcType=VARCHAR}, 
+      #{videosDescript,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.csvideo.pojo.Videos" >
+    insert into videos
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="videosId != null" >
+        videos_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="videosPath != null" >
+        videos_path,
+      </if>
+      <if test="videosPhotoPath != null" >
+        videos_photo_path,
+      </if>
+      <if test="videosPraise != null" >
+        videos_praise,
+      </if>
+      <if test="videosStatu != null" >
+        videos_statu,
+      </if>
+      <if test="videosDescript != null" >
+        videos_descript,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="videosId != null" >
+        #{videosId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="videosPath != null" >
+        #{videosPath,jdbcType=VARCHAR},
+      </if>
+      <if test="videosPhotoPath != null" >
+        #{videosPhotoPath,jdbcType=VARCHAR},
+      </if>
+      <if test="videosPraise != null" >
+        #{videosPraise,jdbcType=INTEGER},
+      </if>
+      <if test="videosStatu != null" >
+        #{videosStatu,jdbcType=VARCHAR},
+      </if>
+      <if test="videosDescript != null" >
+        #{videosDescript,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.csvideo.pojo.VideosExample" resultType="java.lang.Integer" >
+    select count(*) from videos
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update videos
+    <set >
+      <if test="record.videosId != null" >
+        videos_id = #{record.videosId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.videosPath != null" >
+        videos_path = #{record.videosPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.videosPhotoPath != null" >
+        videos_photo_path = #{record.videosPhotoPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.videosPraise != null" >
+        videos_praise = #{record.videosPraise,jdbcType=INTEGER},
+      </if>
+      <if test="record.videosStatu != null" >
+        videos_statu = #{record.videosStatu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.videosDescript != null" >
+        videos_descript = #{record.videosDescript,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update videos
+    set videos_id = #{record.videosId,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=VARCHAR},
+      videos_path = #{record.videosPath,jdbcType=VARCHAR},
+      videos_photo_path = #{record.videosPhotoPath,jdbcType=VARCHAR},
+      videos_praise = #{record.videosPraise,jdbcType=INTEGER},
+      videos_statu = #{record.videosStatu,jdbcType=VARCHAR},
+      videos_descript = #{record.videosDescript,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update videos
+    set videos_id = #{record.videosId,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=VARCHAR},
+      videos_path = #{record.videosPath,jdbcType=VARCHAR},
+      videos_photo_path = #{record.videosPhotoPath,jdbcType=VARCHAR},
+      videos_praise = #{record.videosPraise,jdbcType=INTEGER},
+      videos_statu = #{record.videosStatu,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <select id="findUserId" parameterType="String">
+    SELECT videos.user_id FROM videos WHERE videos_id = #{videosId}
+  </select>
+</mapper>

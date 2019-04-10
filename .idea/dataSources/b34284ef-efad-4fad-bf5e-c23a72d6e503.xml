@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="csvedio@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.1">
+    <root id="1"/>
+    <schema id="2" parent="1" name="csvedio">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="badblog"/>
+    <schema id="4" parent="1" name="beautiful"/>
+    <schema id="5" parent="1" name="bilibili"/>
+    <schema id="6" parent="1" name="blog"/>
+    <schema id="7" parent="1" name="information_schema"/>
+    <schema id="8" parent="1" name="jantent"/>
+    <schema id="9" parent="1" name="machineasset"/>
+    <schema id="10" parent="1" name="mysql"/>
+    <schema id="11" parent="1" name="performance_schema"/>
+    <schema id="12" parent="1" name="pinyougoudb"/>
+    <schema id="13" parent="1" name="recruit"/>
+    <schema id="14" parent="1" name="studentdorms"/>
+    <table id="15" parent="2" name="comments">
+      <Comment>评论表</Comment>
+    </table>
+    <table id="16" parent="2" name="movie_category">
+      <Comment>电影类别表</Comment>
+    </table>
+    <table id="17" parent="2" name="movies">
+      <Comment>电影表</Comment>
+    </table>
+    <table id="18" parent="2" name="tb_user">
+      <Comment>用户信息表</Comment>
+    </table>
+    <table id="19" parent="2" name="user_fans">
+      <Comment>粉丝关系表</Comment>
+    </table>
+    <table id="20" parent="2" name="user_like_movie">
+      <Comment>喜欢（点赞）电影关系表</Comment>
+    </table>
+    <table id="21" parent="2" name="user_like_videos">
+      <Comment>喜欢（点赞）视频关系表</Comment>
+    </table>
+    <table id="22" parent="2" name="user_report">
+      <Comment>用户举报表</Comment>
+    </table>
+    <table id="23" parent="2" name="videos">
+      <Comment>视频表</Comment>
+    </table>
+    <table id="24" parent="2" name="vidies_report">
+      <Comment>视频举报表</Comment>
+    </table>
+    <column id="25" parent="15" name="comment_id">
+      <Position>1</Position>
+      <Comment>唯一id</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="26" parent="15" name="father_comment_id">
+      <Position>2</Position>
+      <Comment>父类评论</Comment>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="27" parent="15" name="to_user_id">
+      <Position>3</Position>
+      <Comment>评论谁</Comment>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="28" parent="15" name="from_user_id">
+      <Position>4</Position>
+      <Comment>谁评论</Comment>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="29" parent="15" name="comment">
+      <Position>5</Position>
+      <Comment>评论内容</Comment>
+      <DataType>text|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="30" parent="15" name="videos_id">
+      <Position>6</Position>
+      <Comment>短视频id</Comment>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="31" parent="15" name="movies_id">
+      <Position>7</Position>
+      <Comment>电影id</Comment>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="32" parent="16" name="category_id">
+      <Position>1</Position>
+      <Comment>唯一id</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="33" parent="16" name="category">
+      <Position>2</Position>
+      <Comment>类别</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="34" parent="17" name="movies_id">
+      <Position>1</Position>
+      <Comment>唯一id</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="35" parent="17" name="user_id">
+      <Position>2</Position>
+      <Comment>发布者id</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="36" parent="17" name="movies_path">
+      <Position>3</Position>
+      <Comment>电影存放路径</Comment>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="37" parent="17" name="movies_descript">
+      <Position>4</Position>
+      <Comment>电影描述</Comment>
+      <DataType>text|0</DataType>
+    </column>
+    <column id="38" parent="17" name="movies_photo_path">
+      <Position>5</Position>
+      <Comment>电影封面图</Comment>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="39" parent="17" name="movies_praise">
+      <Position>6</Position>
+      <Comment>点赞数量</Comment>
+      <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="40" parent="17" name="movies_statu">
+      <Position>7</Position>
+      <Comment>电影状态：0：</Comment>
+      <DataType>varchar(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="41" parent="17" name="category_id">
+      <Position>8</Position>
+      <Comment>电影类别</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="42" parent="18" name="user_id">
+      <Position>1</Position>
+      <Comment>用户id</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="43" parent="18" name="nick_name">
+      <Position>2</Position>
+      <Comment>昵称</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="44" parent="18" name="id_card">
+      <Position>3</Position>
+      <Comment>身份证号</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="45" parent="18" name="phone">
+      <Position>4</Position>
+      <Comment>手机号</Comment>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="46" parent="18" name="password">
+      <Position>5</Position>
+      <Comment>密码</Comment>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="47" parent="18" name="user_statu">
+      <Position>6</Position>
+      <Comment>用户状态：0：正常；1：封号</Comment>
+      <DataType>varchar(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="48" parent="18" name="user_photo">
+      <Position>7</Position>
+      <Comment>头像</Comment>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="49" parent="18" name="fans">
+      <Position>8</Position>
+      <Comment>粉丝数量</Comment>
+      <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="50" parent="18" name="follow">
+      <Position>9</Position>
+      <Comment>我关注的总人数</Comment>
+      <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="51" parent="18" name="praise">
+      <Position>10</Position>
+      <Comment>被赞的总次数</Comment>
+      <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="52" parent="19" name="user_fans_id">
+      <Position>1</Position>
+      <Comment>唯一id</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="53" parent="19" name="user_id">
+      <Position>2</Position>
+      <Comment>用户id</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="54" parent="19" name="fans_id">
+      <Position>3</Position>
+      <Comment>粉丝id</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="55" parent="20" name="user_like_movie_id">
+      <Position>1</Position>
+      <Comment>唯一id</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="56" parent="20" name="user_id">
+      <Position>2</Position>
+      <Comment>用户id</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="57" parent="20" name="movie_id">
+      <Position>3</Position>
+      <Comment>电影id</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="58" parent="21" name="user_like_videos_id">
+      <Position>1</Position>
+      <Comment>唯一id</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="59" parent="21" name="user_id">
+      <Position>2</Position>
+      <Comment>用户id</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="60" parent="21" name="video_id">
+      <Position>3</Position>
+      <Comment>视频id</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="61" parent="22" name="user_report_id">
+      <Position>1</Position>
+      <Comment>唯一id</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="62" parent="22" name="deal_user_id">
+      <Position>2</Position>
+      <Comment>被举报用户id</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="63" parent="22" name="user_id">
+      <Position>3</Position>
+      <Comment>举报人的id</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="64" parent="22" name="cause">
+      <Position>4</Position>
+      <Comment>举报原因</Comment>
+      <DataType>text|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="65" parent="22" name="date">
+      <Position>5</Position>
+      <Comment>举报时间</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="66" parent="23" name="videos_id">
+      <Position>1</Position>
+      <Comment>唯一id</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="67" parent="23" name="user_id">
+      <Position>2</Position>
+      <Comment>发布者id</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="68" parent="23" name="videos_path">
+      <Position>3</Position>
+      <Comment>短视频存放路径</Comment>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="69" parent="23" name="videos_descript">
+      <Position>4</Position>
+      <Comment>视频描述</Comment>
+      <DataType>text|0</DataType>
+    </column>
+    <column id="70" parent="23" name="videos_photo_path">
+      <Position>5</Position>
+      <Comment>视频封面图</Comment>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="71" parent="23" name="videos_praise">
+      <Position>6</Position>
+      <Comment>点赞数量</Comment>
+      <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="72" parent="23" name="videos_statu">
+      <Position>7</Position>
+      <Comment>短视频状态：0：</Comment>
+      <DataType>varchar(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="73" parent="24" name="video_report_id">
+      <Position>1</Position>
+      <Comment>唯一id</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="74" parent="24" name="deal_vedeo_id">
+      <Position>2</Position>
+      <Comment>被举报视频id</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="75" parent="24" name="user_id">
+      <Position>3</Position>
+      <Comment>举报人的id</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="76" parent="24" name="cause">
+      <Position>4</Position>
+      <Comment>举报原因</Comment>
+      <DataType>text|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="77" parent="24" name="date">
+      <Position>5</Position>
+      <Comment>举报时间</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+  </database-model>
+</dataSource>

@@ -1,0 +1,21 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="csvideo-view-interface:war exploded">
+    <output-path>$PROJECT_DIR$/csvideo-view-interface/target/csvideo-view-interface-1.0</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="csvideo-view-interface" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="archive" name="csvideo-pojo-1.0.jar">
+            <element id="module-output" name="csvideo-pojo" />
+          </element>
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/csvideo-view-interface/target/csvideo-view-interface-1.0/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="csvideo-view-interface/web/Web" />
+    </root>
+  </artifact>
+</component>

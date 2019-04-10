@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.csvideo.dao.CommentsMapper" >
+  <resultMap id="BaseResultMap" type="com.csvideo.pojo.Comments" >
+    <result column="comment_id" property="commentId" jdbcType="VARCHAR" />
+    <result column="father_comment_id" property="fatherCommentId" jdbcType="VARCHAR" />
+    <result column="to_user_id" property="toUserId" jdbcType="VARCHAR" />
+    <result column="from_user_id" property="fromUserId" jdbcType="VARCHAR" />
+    <result column="videos_id" property="videosId" jdbcType="VARCHAR" />
+    <result column="movies_id" property="moviesId" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.csvideo.pojo.Comments" extends="BaseResultMap" >
+    <result column="comment" property="comment" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    comment_id, father_comment_id, to_user_id, from_user_id, videos_id, movies_id
+  </sql>
+  <sql id="Blob_Column_List" >
+    comment
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.csvideo.pojo.CommentsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from comments
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.csvideo.pojo.CommentsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from comments
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.csvideo.pojo.CommentsExample" >
+    delete from comments
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.csvideo.pojo.Comments" >
+    insert into comments (comment_id, father_comment_id, to_user_id, 
+      from_user_id, videos_id, movies_id, 
+      comment)
+    values (#{commentId,jdbcType=VARCHAR}, #{fatherCommentId,jdbcType=VARCHAR}, #{toUserId,jdbcType=VARCHAR}, 
+      #{fromUserId,jdbcType=VARCHAR}, #{videosId,jdbcType=VARCHAR}, #{moviesId,jdbcType=VARCHAR}, 
+      #{comment,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.csvideo.pojo.Comments" >
+    insert into comments
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="commentId != null" >
+        comment_id,
+      </if>
+      <if test="fatherCommentId != null" >
+        father_comment_id,
+      </if>
+      <if test="toUserId != null" >
+        to_user_id,
+      </if>
+      <if test="fromUserId != null" >
+        from_user_id,
+      </if>
+      <if test="videosId != null" >
+        videos_id,
+      </if>
+      <if test="moviesId != null" >
+        movies_id,
+      </if>
+      <if test="comment != null" >
+        comment,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="commentId != null" >
+        #{commentId,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherCommentId != null" >
+        #{fatherCommentId,jdbcType=VARCHAR},
+      </if>
+      <if test="toUserId != null" >
+        #{toUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="fromUserId != null" >
+        #{fromUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="videosId != null" >
+        #{videosId,jdbcType=VARCHAR},
+      </if>
+      <if test="moviesId != null" >
+        #{moviesId,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null" >
+        #{comment,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.csvideo.pojo.CommentsExample" resultType="java.lang.Integer" >
+    select count(*) from comments
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update comments
+    <set >
+      <if test="record.commentId != null" >
+        comment_id = #{record.commentId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fatherCommentId != null" >
+        father_comment_id = #{record.fatherCommentId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.toUserId != null" >
+        to_user_id = #{record.toUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fromUserId != null" >
+        from_user_id = #{record.fromUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.videosId != null" >
+        videos_id = #{record.videosId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.moviesId != null" >
+        movies_id = #{record.moviesId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.comment != null" >
+        comment = #{record.comment,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update comments
+    set comment_id = #{record.commentId,jdbcType=VARCHAR},
+      father_comment_id = #{record.fatherCommentId,jdbcType=VARCHAR},
+      to_user_id = #{record.toUserId,jdbcType=VARCHAR},
+      from_user_id = #{record.fromUserId,jdbcType=VARCHAR},
+      videos_id = #{record.videosId,jdbcType=VARCHAR},
+      movies_id = #{record.moviesId,jdbcType=VARCHAR},
+      comment = #{record.comment,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update comments
+    set comment_id = #{record.commentId,jdbcType=VARCHAR},
+      father_comment_id = #{record.fatherCommentId,jdbcType=VARCHAR},
+      to_user_id = #{record.toUserId,jdbcType=VARCHAR},
+      from_user_id = #{record.fromUserId,jdbcType=VARCHAR},
+      videos_id = #{record.videosId,jdbcType=VARCHAR},
+      movies_id = #{record.moviesId,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

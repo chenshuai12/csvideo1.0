@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.csvideo.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.csvideo.pojo.User" >
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="id_card" property="idCard" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="user_statu" property="userStatu" jdbcType="VARCHAR" />
+    <result column="user_photo" property="userPhoto" jdbcType="VARCHAR" />
+    <result column="fans" property="fans" jdbcType="INTEGER" />
+    <result column="follow" property="follow" jdbcType="INTEGER" />
+    <result column="praise" property="praise" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    user_id, nick_name, id_card, phone, password, user_statu, user_photo, fans, follow, 
+    praise
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.csvideo.pojo.UserExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.csvideo.pojo.UserExample" >
+    delete from tb_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.csvideo.pojo.User" >
+    insert into tb_user (user_id, nick_name, id_card, 
+      phone, password, user_statu, 
+      user_photo, fans, follow, 
+      praise)
+    values (#{userId,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{userStatu,jdbcType=VARCHAR}, 
+      #{userPhoto,jdbcType=VARCHAR}, #{fans,jdbcType=INTEGER}, #{follow,jdbcType=INTEGER}, 
+      #{praise,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.csvideo.pojo.User" >
+    insert into tb_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="nickName != null" >
+        nick_name,
+      </if>
+      <if test="idCard != null" >
+        id_card,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="userStatu != null" >
+        user_statu,
+      </if>
+      <if test="userPhoto != null" >
+        user_photo,
+      </if>
+      <if test="fans != null" >
+        fans,
+      </if>
+      <if test="follow != null" >
+        follow,
+      </if>
+      <if test="praise != null" >
+        praise,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null" >
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="userStatu != null" >
+        #{userStatu,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhoto != null" >
+        #{userPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="fans != null" >
+        #{fans,jdbcType=INTEGER},
+      </if>
+      <if test="follow != null" >
+        #{follow,jdbcType=INTEGER},
+      </if>
+      <if test="praise != null" >
+        #{praise,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.csvideo.pojo.UserExample" resultType="java.lang.Integer" >
+    select count(*) from tb_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_user
+    <set >
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nickName != null" >
+        nick_name = #{record.nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idCard != null" >
+        id_card = #{record.idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userStatu != null" >
+        user_statu = #{record.userStatu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userPhoto != null" >
+        user_photo = #{record.userPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fans != null" >
+        fans = #{record.fans,jdbcType=INTEGER},
+      </if>
+      <if test="record.follow != null" >
+        follow = #{record.follow,jdbcType=INTEGER},
+      </if>
+      <if test="record.praise != null" >
+        praise = #{record.praise,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_user
+    set user_id = #{record.userId,jdbcType=VARCHAR},
+      nick_name = #{record.nickName,jdbcType=VARCHAR},
+      id_card = #{record.idCard,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      user_statu = #{record.userStatu,jdbcType=VARCHAR},
+      user_photo = #{record.userPhoto,jdbcType=VARCHAR},
+      fans = #{record.fans,jdbcType=INTEGER},
+      follow = #{record.follow,jdbcType=INTEGER},
+      praise = #{record.praise,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+
+  <update id="addFans" parameterType="String">
+    UPDATE tb_user
+    SET fans = fans + 1 WHERE user_id = #{userId}
+  </update>
+  <update id="addFollow" parameterType="String">
+    UPDATE tb_user
+    SET follow = follow + 1 WHERE user_id = #{userId}
+  </update>
+  <update id="descFans" parameterType="String">
+    UPDATE tb_user
+    SET fans = fans - 1 WHERE user_id = #{userId}
+  </update>
+  <update id="descFollow" parameterType="String">
+    UPDATE tb_user
+    SET follow = follow - 1 WHERE user_id = #{userId}
+  </update>
+  <update id="addPraise" parameterType="String">
+    UPDATE tb_user
+    SET praise = praise + 1 WHERE user_id = #{userId}
+  </update>
+
+  <select id="findFans" parameterType="String" resultType="com.csvideo.pojo.User">
+    SELECT tb_user.user_id,tb_user.praise,tb_user.follow,tb_user.fans,tb_user.phone,tb_user.password,
+    tb_user.id_card,tb_user.nick_name,tb_user.user_photo,tb_user.user_statu
+    FROM tb_user WHERE tb_user.user_id = user_fans.fans_id AND user_fans.user_id = #{userId}
+  </select>
+
+  <select id="findFollow" parameterType="String" resultType="com.csvideo.pojo.User">
+  SELECT tb_user.user_id,tb_user.praise,tb_user.follow,tb_user.fans,tb_user.phone,tb_user.password,
+  tb_user.id_card,tb_user.nick_name,tb_user.user_photo,tb_user.user_statu
+  FROM tb_user WHERE tb_user.user_id = user_fans.user_id AND user_fans.fans_id = #{userId}
+  </select>
+</mapper>

@@ -1,0 +1,10 @@
+com\csvideo\dao\VideosMapper.class
+com\csvideo\dao\UserMapper.class
+com\csvideo\dao\UserLikeMovieMapper.class
+com\csvideo\dao\MovieCategoryMapper.class
+com\csvideo\dao\UserFansMapper.class
+com\csvideo\dao\UserReportMapper.class
+com\csvideo\dao\UserLikeVideosMapper.class
+com\csvideo\dao\CommentsMapper.class
+com\csvideo\dao\MoviesMapper.class
+com\csvideo\dao\VideosReportMapper.class

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/csvideo-common/csvideo-common.iml" filepath="$PROJECT_DIR$/csvideo-common/csvideo-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/csvideo-dao/csvideo-dao.iml" filepath="$PROJECT_DIR$/csvideo-dao/csvideo-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/csvideo-manager-web/csvideo-manager-web.iml" filepath="$PROJECT_DIR$/csvideo-manager-web/csvideo-manager-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/csvideo-parent.iml" filepath="$PROJECT_DIR$/csvideo-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/csvideo-pojo/csvideo-pojo.iml" filepath="$PROJECT_DIR$/csvideo-pojo/csvideo-pojo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/csvideo-view-interface/csvideo-view-interface.iml" filepath="$PROJECT_DIR$/csvideo-view-interface/csvideo-view-interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/csvideo-view-service/csvideo-view-service.iml" filepath="$PROJECT_DIR$/csvideo-view-service/csvideo-view-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/csvideo-view-web/csvideo-view-web.iml" filepath="$PROJECT_DIR$/csvideo-view-web/csvideo-view-web.iml" />
+    </modules>
+  </component>
+</project>

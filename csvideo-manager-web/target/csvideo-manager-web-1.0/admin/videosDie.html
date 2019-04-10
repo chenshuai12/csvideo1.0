@@ -1,0 +1,80 @@
+<!--封禁视频-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>品牌管理</title>
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/AdminLTE.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../plugins/angularjs/angular.min.js"></script>
+    <!-- 分页组件开始 -->
+    <script src="../plugins/angularjs/pagination.js"></script>
+    <link rel="stylesheet" href="../plugins/angularjs/pagination.css">
+    <!-- 分页组件结束 -->
+
+    <script type="text/javascript" src="../js/base_pagination.js"></script>
+    <script type="text/javascript" src="../js/controller/baseController.js"></script>
+    <script type="text/javascript" src="../js/controller/VideosDieController.js"></script>
+    <script type="text/javascript" src="../js/service/VideosDieService.js"></script>
+
+
+</head>
+
+<body class="hold-transition skin-red sidebar-mini" ng-app="csvideo" ng-controller="VideosDieController" >
+<!-- .box-body -->
+<div class="box-header with-border">
+    <h3 class="box-title">封禁短视频</h3>
+</div>
+
+<div class="box-body">
+
+    <!-- 数据表格 -->
+    <div class="table-box">
+
+        <!--工具栏-->
+        <div class="pull-left">
+            <div class="form-group form-inline">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
+                </div>
+            </div>
+        </div>
+        <!--数据列表-->
+        <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
+            <thead>
+            <tr>
+                <th class="sorting">用户ID</th>
+                <th class="sorting">短视频ID</th>
+                <th class="sorting">播放视频</th>
+                <th class="sorting">视频封面</th>
+                <th class="sorting">视频描述</th>
+                <th class="sorting">赞</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="entity in list">
+                <td>{{entity.userId}}</td>
+                <td>{{entity.videosId}}</td>
+                <td><a href="{{entity.videosPath}}">查看短视频</a></td>
+                <td><a href="{{entity.videosPhotoPath}}">查看封面</a></td>
+                <td>{{entity.videosDescript}}</td>
+                <td>{{entity.videosPraise}}</td>
+            </tr>
+
+            </tbody>
+        </table>
+        <!--数据列表/-->
+        <tm-pagination conf="paginationConf"></tm-pagination>
+    </div>
+    <!-- 数据表格 /-->
+</div>
+<!-- /.box-body -->
+
+</body>
+</html>
