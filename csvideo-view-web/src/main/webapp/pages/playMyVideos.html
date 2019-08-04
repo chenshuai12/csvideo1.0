@@ -1,0 +1,398 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>播放</title>
+
+    <link rel="stylesheet" type="text/css" href="../layui/common/layui/css/layui.css" media="all">
+    <link rel="stylesheet" type="text/css" href="../layui/common/bootstrap/css/bootstrap.css" media="all">
+    <link rel="stylesheet" type="text/css" href="../layui/common/global.css" media="all">
+    <link rel="stylesheet" type="text/css" href="../layui/css/personal.css" media="all">
+    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/AdminLTE.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/skins/_all-skins.min.css">
+    <script src="../player/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!--封装好的视频布局样式-->
+    <link rel="stylesheet" href="../player/css/jsmodern.min.css">
+
+
+
+
+    <script type="text/javascript" src="../plugins/angularjs/angular.min.js"></script>
+    <script type="text/javascript" src="../js/base.js"></script>
+    <script type="text/javascript" src="../js/controller/baseController.js"></script>
+    <script type="text/javascript" src="../js/controller/videos.js"></script>
+    <script type="text/javascript" src="../js/service/UserService.js"></script>
+    <script type="text/javascript" src="../js/service/UserLikeVideosService.js"></script>
+
+    <!--mp4视频插件-->
+    <script src="../player/js/jsmodern.min.js"></script>
+    <style type="text/css">
+        .article-container{
+            background-color: #ffffff;
+            padding-top:20px;
+            width:1024px;
+            margin:20px auto;
+        }
+
+        .article_r{
+            padding-top:10px;
+            float:right;
+        }
+        .pulisher,.time,.article_view,.article_comments,.article_del{
+            clear:both;
+            margin-right:25px;
+            font-size: 15px;
+        }
+        .title{
+            font-weight:bold;
+            font-size: 30px;
+            text-align: center;
+        }
+        .article_content{
+            background: #ffffff;
+            clear:both;
+            padding:1em 4em;
+            margin-top: 40px;
+        }
+        p{
+            text-indent: 2em;
+            text-overflow: "hidden";
+            font-size:18px;
+        }
+
+        /*话题内容图片*/
+        .ImgContent{
+            width:350px;
+            margin:0px auto;
+            padding: 5px;
+            overflow:hidden;
+
+        }
+
+        .NavLinks{
+            padding:5px;
+            width:100px;
+            height: 100px;
+            float: left;
+            overflow: hidden;
+        }
+
+        .NavLinks img{
+            width: 100%;
+            height: 100%;
+        }
+        .hitShowPic {
+            width:350px;
+            clear:both;
+            margin-left:430px;
+        }
+        .hitShowPic span {
+            font-size: 15px;
+            text-align: center;
+        }
+        /*以下评论的css*/
+        .show_reply_list {
+            margin-right:1em;
+            color: grey;
+        }
+        .comment_list {
+            background-color: #ffffff;
+            padding-top:5px;
+            width:900px;
+            margin:0 auto;
+        }
+        .comment {
+            width:900px;
+            margin-top:10px;
+        }
+        .comment_details {
+            float:right;
+        }
+        .comment_content {
+            clear:both;
+            margin:5px 50px;
+            font-size:16px;
+        }
+        .comment_add_or_last {
+
+            margin:0 auto;
+            clear: both;
+            width:600px;
+            height:50px;
+            background: #F0F0F0;
+            text-align: center;
+            font-size:20px;
+            line-height: 40px;   /*行高（与div保持同高，垂直居中写法）*/
+            margin-bottom: 40px;
+        }
+        .imgdiv{
+            width:80px;
+            height:70px;
+            float:left;
+
+        }
+        .imgcss {
+            width:60px;
+            height:60px;
+            border-radius: 50%;
+        }
+        .comment_name {
+            margin-left:10px;
+            color:#3D9EEA;
+            font-size:16px;
+            font-weight: bolder;
+        }
+        .layui-icon {
+            font-size: 13px;
+            color: grey;
+        }
+        .del {
+            float:right;
+
+        }
+        .del_comment {
+            margin-right:50px;
+        }
+
+
+
+        .reply_list {
+            clear:both;
+            display:none;
+            width:900px;
+
+            padding-right:15px;
+            margin-top:10px;
+            font-size:16px;
+
+        }
+        .reply {
+            clear:both;
+            width:700px;
+            margin:4px auto;
+
+        }
+        .reply_name {
+            color:#3D9EEA;
+        }
+        .del_reply {
+            float:right;
+        }
+        .show_remain_reply {
+            width:600px;
+            height:40px;
+            text-align:center;font-size:18px;
+            background-color: #F0F0F0;
+            margin:0 auto;
+            line-height: 40px;
+            display:none;
+        }
+        /** 视频样式*/
+        #video {
+            width: 970px;
+            height: 594px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        #video video {
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+        }
+
+        .VideoBtn {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            display: block;
+            width: 70px;
+            height: 70px;
+            margin-left: -35px;
+            margin-top: -35px;
+            cursor: pointer;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body ng-app="csvideo" ng-controller="videos" ng-init="con()">
+
+<div class="article-container">
+
+    <div>
+        <div>
+            <p hidden="hidden">{{player.userId}}</p>
+            <p hidden="hidden">{{player.videosId}}</p>
+            <span class="article_view" title="阅读"> 赞{{player.videosPraise}}</span>
+            <button class="btn btn-primary" type="button" ng-click="dele(player.videosId)">取消喜欢</button>
+            <button class="btn btn-primary" type="button" ng-click="findUserById(player.userId)">查看发表用户</button>
+        </div>
+    </div>
+    <div id="video">
+        <video ng-src="{{videoUrl(player.videosPath)}}" id="videoShow"></video>
+        <span class="VideoBtn"><img src="../player/images/bo1.png"></span>
+    </div>
+    <div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+    <hr>
+    <div class="comment_list">
+        <h3 style="text-indent: 2em;">评论列表</h3>
+        <hr>
+        <div class="comment">
+            <div class="imgdiv">
+                <img class="imgcss"  src="./images/user.jpg"/>
+            </div>
+            <div class="conmment_details">
+                <div style="float:left;">
+                    <span class="comment_name">大白 </span>     <span>22分钟前</span>
+
+                </div>
+                <div class="del">
+                    <span  class="show_reply_list">查看回复</span>
+                    <i class="icon layui-icon" >赞(164)</i>
+                    <a class="del_comment" data-id="1"> <i class="icon layui-icon" >删除</i></a>
+                </div>
+                <div class="comment_content" >  感觉林丹越来越帅了，好棒感觉林丹越来越帅了，好棒感觉林丹越来越帅了，好棒感觉林丹越来越帅了，好棒感觉林丹越来越帅了，好棒
+                </div>
+            </div>
+            <div class="reply_list"  >   <!--style="display:none;"-->
+                <div class="reply" >
+                    <span class="reply_name">小白</span>回复<span class="reply_name">小黑</span>：<span class="reply_content">你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好 </span>
+                    <a  data-id="1" class="del_reply">
+                        <i class="icon layui-icon " >    删除</i>
+                    </a>
+                </div>
+                <div class="reply">
+                    <span class="reply_name">小白</span>回复<span class="reply_name">小黑</span>：<span class="reply_content">你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊 </span>
+                    <a  data-id="1" class="del_reply">
+                        <i class="icon layui-icon" >    删除</i>
+                    </a>
+                </div>
+                <div class="reply">
+                    <span class="reply_name">小白</span>回复<span class="reply_name">小黑</span>：<span class="reply_content">你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊 </span>
+                    <a  data-id="1" class="del_reply">
+                        <i class="icon layui-icon" >    删除</i>
+                    </a>
+                </div>
+                <div class="reply">
+                    <span class="reply_name">小白</span>回复<span class="reply_name">小黑</span>：<span class="reply_content">你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊 </span>
+                    <a  data-id="1" class="del_reply">
+                        <i class="icon layui-icon" >    删除</i>
+                    </a>
+                </div>
+
+            </div>
+            <div class="show_remain_reply">查看剩下的回复</div>
+            <!--回复列表结束-->
+        </div>
+        <hr>
+        <hr>
+
+
+        <div class="comment_add_or_last" >
+            点击加载更多评论
+        </div>
+        <hr>
+    </div>
+
+</div>
+</div>
+
+<script type="text/javascript" src="../layui/common/layui/layui.js"></script>
+<!--视频插件调用方法-->
+<script>
+    $(function () {
+        //视频
+        jsModern.video("#video");
+        //播放视频
+        $(".VideoBtn").click(function () {
+            var video = document.getElementById("videoShow");
+            video.play();
+            $('.VideoBtn').hide();
+        })
+        //监听视频的播放状态
+        var video = document.getElementById("videoShow");
+        video.oncanplay = function () {
+            $(".VideoBtn").show();
+            //$("#video").attr("poster","");
+        }
+        //视频播放事件
+        video.onplay = function () {
+            $("#videoShow").attr("poster", "");
+            $(".VideoBtn").hide();
+        };
+        video.onplaying = function () {
+            $(".VideoBtn").hide();
+        };
+
+        //视频暂停事件
+        video.onpause = function () {
+            $(".VideoBtn").show();
+        };
+        //点击视频周围暂停播放图片出现
+        video.onclick = function () {
+            if (video.paused) {
+                $(".VideoBtn").hide();
+                video.play();
+            } else {
+                $(".VideoBtn").show();
+                video.pause();
+            }
+        };
+    })
+</script>
+<script type="text/javascript">
+    layui.use(['form','layer','jquery','element','laypage','form'],function(){
+        var form = layui.form();
+        window.layer = layui.layer;
+        layedit = layui.layedit;
+        window.jQuery = window.$ = layui.jquery;
+        var element = layui.element(),form = layui.form();
+        layer.photos({
+            photos: '#layer-photos-demo'
+            ,anim: 5
+        });
+
+        $(document).ready(function(){
+            //alert($(".comment_list").find(".comment")[0] == undefined);
+            if($(".comment_list").find(".comment")[0] == undefined) {
+                $(".comment_add_or_last").html("暂无人评论");
+            }
+            $(document).on('click','.show_reply_list', function(){
+
+                if($(this).closest('.comment').find(".reply_list").css("display") != "none") {
+                    $(this).closest('.comment').find(".show_remain_reply").css("display","none");
+                    $(this).html("查看回复");
+
+                }else {
+                    $(this).closest('.comment').find(".show_remain_reply").css("display","block");
+                    $(this).html("收起回复");
+
+                }
+                $(this).closest('.comment').find(".reply_list").toggle(500);
+
+
+            });
+
+            $(document).on('click','.show_remain_reply', function(){
+                $(this).html("已显示全部回复");
+                //TODO发送数据
+
+            });
+            $(document).on('click','.comment_add_or_last', function(){
+                var getMoreComment = $(this);
+                //TODO如果获取的数据为零
+                getMoreComment.html("没有更多评论了");
+            });
+
+        });
+    });
+
+</script>
+
+
+</body>
+</html>
